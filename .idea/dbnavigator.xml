@@ -6,7 +6,7 @@
   </component>
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
@@ -47,6 +47,16 @@ create table users (
     primary key (id)
 );
 
+create table comments (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    author VARCHAR(255) NOT NULL,
+    content VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP,
+    article_id BIGINT,
+    primary key (id),
+    CONSTRAINT fk_comments_article FOREIGN KEY (article_id) REFERENCES article (id) ON DELETE SET NULL
+);
+
 show tables;]]></console>
     </connection>
   </component>
@@ -58,6 +68,10 @@ show tables;]]></console>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="3e263828-c0c1-4280-ad1b-d547cd44c500" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="3e263828-c0c1-4280-ad1b-d547cd44c500" dataset="blog.refresh_token" active-filter-id="" />
+    <filter-actions connection-id="3e263828-c0c1-4280-ad1b-d547cd44c500" dataset="blog.article" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
